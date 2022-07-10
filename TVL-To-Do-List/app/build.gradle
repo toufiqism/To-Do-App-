@@ -30,6 +30,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -47,7 +50,10 @@ dependencies {
 
     def room_version = "2.4.2"
     def lifecycle_version = "2.6.0-alpha01"
+    def coroutine_version = "1.6.1"
 
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
 
 
     implementation "androidx.room:room-runtime:$room_version"
