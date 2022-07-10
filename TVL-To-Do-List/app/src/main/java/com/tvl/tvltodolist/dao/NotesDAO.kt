@@ -1,7 +1,8 @@
-package com.tvl.tvltodolist.model
+package com.tvl.tvltodolist.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.tvl.tvltodolist.model.Notes
 
 @Dao
 interface NotesDAO {

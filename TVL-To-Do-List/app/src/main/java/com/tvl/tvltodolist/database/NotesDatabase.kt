@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.tvl.tvltodolist.model.Notes
-import com.tvl.tvltodolist.model.NotesDAO
+import com.tvl.tvltodolist.dao.NotesDAO
 
 
 @Database(entities = [Notes::class], version = 1)

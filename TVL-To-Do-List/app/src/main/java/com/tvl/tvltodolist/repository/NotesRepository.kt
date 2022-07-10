@@ -1,7 +1,10 @@
-package com.tvl.tvltodolist.model
+package com.tvl.tvltodolist.repository
+
+import com.tvl.tvltodolist.model.Notes
+import com.tvl.tvltodolist.dao.NotesDAO
 
 class NotesRepository(private val notesDao: NotesDAO) {
-    val getAllData = notesDao.getAllData()
+    val getAllNotes = notesDao.getAllData()
 
     suspend fun insert(notes: Notes): Long {
         return notesDao.insertNotes(notes)
