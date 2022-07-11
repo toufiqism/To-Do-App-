@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.tvl.tvltodolist.handlers.Event
 import com.tvl.tvltodolist.model.Notes
 import com.tvl.tvltodolist.repository.NotesRepository
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class NotesViewModel(private val repository: NotesRepository) : ViewModel() {
@@ -17,7 +18,7 @@ class NotesViewModel(private val repository: NotesRepository) : ViewModel() {
         get() = statusMessage
 
 
-    fun insertNotes(notes: Notes) = viewModelScope.launch {
+    fun insertNotes(notes: Notes): Job = viewModelScope.launch {
         val noOfRows = repository.insert(notes)
         if (noOfRows > 1) {
             statusMessage.value = Event("Added Successfully ")
@@ -26,7 +27,7 @@ class NotesViewModel(private val repository: NotesRepository) : ViewModel() {
         }
     }
 
-    fun updateNotes(notes: Notes) = viewModelScope.launch {
+    fun updateNotes(notes: Notes): Job = viewModelScope.launch {
         val noOfRows = repository.update(notes)
         if (noOfRows > 1) {
             statusMessage.value = Event("Added Successfully ")
@@ -35,8 +36,8 @@ class NotesViewModel(private val repository: NotesRepository) : ViewModel() {
         }
     }
 
-    fun deleteNotes(id: Int) = viewModelScope.launch {
-        val noOfRows = repository.delete(id)
+    fun deleteNotes(notes: Notes): Job = viewModelScope.launch {
+        val noOfRows = repository.delete(notes)
         if (noOfRows > 1) {
             statusMessage.value = Event("Added Successfully ")
         } else {

@@ -10,15 +10,15 @@ class NotesRepository(private val notesDao: NotesDAO) {
         return notesDao.insertNotes(notes)
     }
 
-    suspend fun delete(id: Int): Int {
-        return notesDao.deleteNotes(id)
+    suspend fun delete(notes: Notes): Int {
+        return notesDao.deleteNotes(notes)
     }
 
     suspend fun update(notes: Notes): Int {
         return notesDao.updateNotes(notes)
     }
 
-    suspend fun deleteAll() {
+    fun deleteAll() {
         notesDao.deleteAll()
     }
 }

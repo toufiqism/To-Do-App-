@@ -12,14 +12,14 @@ interface NotesDAO {
     @Insert
     suspend fun insertNotes(notes: Notes): Long
 
-    @Query("Delete from Notes_Database where id=:id")
-    suspend fun deleteNotes(id: Int): Int
+    @Delete
+    suspend fun deleteNotes(notes: Notes): Int
 
     @Update
     suspend fun updateNotes(notes: Notes): Int
 
     @Query("DELETE FROM Notes_Database")
-    suspend fun deleteAll(): Int
+    fun deleteAll(): Int
 
 
 }
