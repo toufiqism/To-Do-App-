@@ -33,10 +33,13 @@ android {
     dataBinding {
         enabled = true
     }
+    viewBinding {
+        enabled = true
+    }
 }
 
-dependencies {
 
+dependencies {
 
 
     implementation 'androidx.core:core-ktx:1.7.0'

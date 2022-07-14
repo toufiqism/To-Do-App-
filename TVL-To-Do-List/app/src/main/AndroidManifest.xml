@@ -14,10 +14,10 @@
         android:theme="@style/Theme.TVLToDoList"
         tools:targetApi="31">
         <activity
-            android:name=".UpdateNotesActivity"
+            android:name=".ui.activities.InsertNoteActivity"
             android:exported="false" />
         <activity
-            android:name=".InsertNoteActivity"
+            android:name=".ui.activities.UpdateNotesActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activities.SplashScreenActivity"

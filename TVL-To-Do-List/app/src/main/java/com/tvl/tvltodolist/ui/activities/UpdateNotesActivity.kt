@@ -1,4 +1,4 @@
-package com.tvl.tvltodolist.ui
+package com.tvl.tvltodolist.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -1,3 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="priority_margin">15dp</dimen>
+    <dimen name="priority_height">35dp</dimen>
+    <dimen name="priority_width">35dp</dimen>
+    <dimen name="edittext_notes_height">300dp</dimen>
+    <dimen name="edittext_padding">15dp</dimen>
+    <dimen name="edittext_margin">16dp</dimen>
+    <dimen name="priority_textview_margin">10dp</dimen>
+    <dimen name="recycler_item_padding">7dp</dimen>
+    <dimen name="recycler_item_lin_layout_margin">10dp</dimen>
+    <dimen name="recycler_item_shape">25dp</dimen>
 </resources>
