@@ -15,6 +15,7 @@ import com.tvl.tvltodolist.model.Notes
 import com.tvl.tvltodolist.ui.activities.MainActivity
 import com.tvl.tvltodolist.ui.adapters.NotesAdapter
 import com.tvl.tvltodolist.viewmodel.NotesViewModel
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -87,7 +88,7 @@ class InsertNoteFragment : Fragment() {
                 subtitle = subTitle,
                 notes = notes,
                 notesPriority = priority,
-                notesDate = Calendar.getInstance().time.toString()
+                notesDate = SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(Date()).toString()
             )
         )
 
