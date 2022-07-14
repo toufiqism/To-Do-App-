@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TVL To Do List</string>
+    <string name="title">Title..</string>
+    <string name="sub_title">Sub Title..</string>
+    <string name="notes">Notes</string>
+    <string name="priority">Priority</string>
 </resources>
