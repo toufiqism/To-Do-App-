@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.tvl.tvltodolist.R
 import com.tvl.tvltodolist.databinding.FragmentNotesListBinding
+import com.tvl.tvltodolist.model.Notes
 import com.tvl.tvltodolist.ui.activities.MainActivity
 import com.tvl.tvltodolist.ui.adapters.NotesAdapter
 import com.tvl.tvltodolist.viewmodel.NotesViewModel
@@ -39,8 +40,13 @@ class NotesListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = NotesAdapter()
+        adapter = NotesAdapter(this::clickAction)
         actions()
+    }
+
+    private fun clickAction(note: Notes) {
+        viewModel.valuePassForUpdate(note)
+        findNavController().navigate(R.id.action_notesListFragment_to_updateNotesFragment)
     }
 
     private fun actions() {

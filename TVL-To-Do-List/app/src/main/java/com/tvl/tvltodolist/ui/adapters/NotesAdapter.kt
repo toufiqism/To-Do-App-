@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tvl.tvltodolist.R
 import com.tvl.tvltodolist.model.Notes
 
-class NotesAdapter() : RecyclerView.Adapter<NotesAdapterViewHolder>() {
+class NotesAdapter(private val click: (Notes) -> Unit) :
+    RecyclerView.Adapter<NotesAdapterViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesAdapterViewHolder {
@@ -19,7 +20,7 @@ class NotesAdapter() : RecyclerView.Adapter<NotesAdapterViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: NotesAdapterViewHolder, position: Int) {
-        holder.bind(notesList[position])
+        holder.bind(notesList[position], click)
     }
 
     override fun getItemCount(): Int {
@@ -36,17 +37,19 @@ class NotesAdapter() : RecyclerView.Adapter<NotesAdapterViewHolder>() {
 
 class NotesAdapterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     lateinit var notesPriority: View
+    lateinit var linLayoutListItem: View
     lateinit var notesTitle: TextView
     lateinit var notesSubTitle: TextView
     lateinit var notesData: TextView
     lateinit var notesDate: TextView
-    fun bind(note: Notes) {
+    fun bind(note: Notes, click: (Notes) -> Unit) {
 
         notesTitle = itemView.findViewById(R.id.notesTitle)
         notesSubTitle = itemView.findViewById(R.id.notesSubTitle)
         notesData = itemView.findViewById(R.id.notesData)
         notesDate = itemView.findViewById(R.id.notesDate)
         notesPriority = itemView.findViewById(R.id.notesPriority)
+        linLayoutListItem = itemView.findViewById(R.id.linLayoutListItem)
 
         notesTitle.text = note.title
         notesSubTitle.text = note.subtitle
@@ -60,6 +63,9 @@ class NotesAdapterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
         }
         if (note.notesPriority.contains("3")) {
             notesPriority.setBackgroundResource(R.drawable.red_shape)
+        }
+        linLayoutListItem.setOnClickListener {
+            click(note)
         }
     }
 }

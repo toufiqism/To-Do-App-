@@ -44,4 +44,9 @@ class NotesViewModel(private val repository: NotesRepository) : ViewModel() {
             statusMessage.value = Event("Error Occurred! ")
         }
     }
+
+    lateinit var updateNote: Notes
+    fun valuePassForUpdate(notes: Notes) {
+        updateNote = notes
+    }
 }
