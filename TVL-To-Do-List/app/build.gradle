@@ -52,7 +52,7 @@ dependencies {
 
 
     def room_version = "2.5.0-alpha02"
-    def lifecycle_version = "2.6.0-alpha01"
+    def lifecycle_version = "2.5.0-beta01"
     def coroutine_version = "1.6.1"
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"

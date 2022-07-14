@@ -57,14 +57,14 @@ class InsertNoteActivity : AppCompatActivity() {
                 redPriority.setImageResource(0)
             }
             redPriority.setOnClickListener {
-                priority = "2"
+                priority = "3"
                 greenPriority.setImageResource(0)
                 yellowPriority.setImageResource(0)
                 redPriority.setImageResource(R.drawable.ic_baseline_done_24)
 
             }
             yellowPriority.setOnClickListener {
-                priority = "3"
+                priority = "2"
                 greenPriority.setImageResource(0)
                 yellowPriority.setImageResource(R.drawable.ic_baseline_done_24)
                 redPriority.setImageResource(0)
