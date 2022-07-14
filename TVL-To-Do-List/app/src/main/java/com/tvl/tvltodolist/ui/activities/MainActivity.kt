@@ -19,44 +19,13 @@ import com.tvl.tvltodolist.viewmodel.NotesViewModel
 import com.tvl.tvltodolist.viewmodel.NotesViewModelFactory
 
 class MainActivity : AppCompatActivity() {
-    lateinit var bind: ActivityMainBinding
     lateinit var viewModel: NotesViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initialization()
-        actions()
-    }
-
-    private fun actions() {
-        viewModel.allNotes.observe(this, Observer { notes ->
-            adapter.setList(notes = notes)
-            bind.rclViewNotes.layoutManager = GridLayoutManager(this, 2)
-            bind.rclViewNotes.adapter = adapter
-            adapter.notifyDataSetChanged()
-        })
-        bind.btnAddNotes.setOnClickListener {
-            startActivity(Intent(this, InsertNoteActivity::class.java))
-        }
-        viewModel.message.observe(this, Observer { event ->
-            event.getContentIfNotHandled()?.let {
-                Snackbar.make(
-                    findViewById(android.R.id.content),
-                    it,
-                    Snackbar.LENGTH_SHORT // How long to display the message.
-                ).show()
-            }
-        })
-
-    }
-
-    lateinit var adapter: NotesAdapter
-    private fun initialization() {
-        bind = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        setContentView(bind.root)
+        setContentView(R.layout.activity_main)
         val dao: NotesDAO = NotesDatabase.getInstance(application).notesDAO
         val repository = NotesRepository(dao)
         val factory = NotesViewModelFactory(repository)
         viewModel = ViewModelProvider(this, factory)[NotesViewModel::class.java]
-        adapter = NotesAdapter()
     }
 }

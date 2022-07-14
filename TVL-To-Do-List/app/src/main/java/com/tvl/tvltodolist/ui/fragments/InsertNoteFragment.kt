@@ -1,54 +1,59 @@
-package com.tvl.tvltodolist.ui.activities
+package com.tvl.tvltodolist.ui.fragments
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelStore
-import androidx.lifecycle.viewmodel.ViewModelFactoryDsl
+import androidx.navigation.fragment.findNavController
 import com.tvl.tvltodolist.R
-import com.tvl.tvltodolist.dao.NotesDAO
-import com.tvl.tvltodolist.database.NotesDatabase
-import com.tvl.tvltodolist.databinding.ActivityInsertNoteBinding
+import com.tvl.tvltodolist.databinding.FragmentInsertNoteBinding
+import com.tvl.tvltodolist.databinding.FragmentNotesListBinding
 import com.tvl.tvltodolist.model.Notes
-import com.tvl.tvltodolist.repository.NotesRepository
+import com.tvl.tvltodolist.ui.activities.MainActivity
+import com.tvl.tvltodolist.ui.adapters.NotesAdapter
 import com.tvl.tvltodolist.viewmodel.NotesViewModel
-import com.tvl.tvltodolist.viewmodel.NotesViewModelFactory
 import java.util.*
 
-class InsertNoteActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityInsertNoteBinding
+class InsertNoteFragment : Fragment() {
+    lateinit var bind: FragmentInsertNoteBinding
+    lateinit var viewModel: NotesViewModel
     private lateinit var title: String
     private lateinit var subTitle: String
     private lateinit var notes: String
     private var priority: String = "1"
-    lateinit var viewModel: NotesViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_insert_note)
-        setContentView(binding.root)
-        initialize()
-        actions()
     }
 
-    private fun initialize() {
-        val dao: NotesDAO = NotesDatabase.getInstance(application).notesDAO
-        val repository = NotesRepository(dao)
-        val factory = NotesViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, factory)[NotesViewModel::class.java]
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        viewModel = (activity as MainActivity).viewModel
+        // Inflate the layout for this fragment
+        bind = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_insert_note, container, false
+        )
+        return bind.root
+
     }
 
-    private fun actions() {
-        binding.apply {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        bind.apply {
 
             btnDoneNotes.setOnClickListener {
                 title = editTextTitle.text.toString()
                 subTitle = editTextSubTitle.text.toString()
                 notes = editTextNotesData.text.toString()
                 createNotes(title, subTitle, notes)
+                findNavController().navigate(
+                    R.id.action_insertNoteFragment_to_notesListFragment
+                )
             }
             greenPriority.setOnClickListener {
                 priority = "1"
@@ -86,8 +91,9 @@ class InsertNoteActivity : AppCompatActivity() {
             )
         )
 
-        Toast.makeText(this@InsertNoteActivity, "Notes Created Successfully", Toast.LENGTH_LONG)
+        Toast.makeText(activity, "Notes Created Successfully", Toast.LENGTH_LONG)
             .show()
-        finish()
+
     }
+
 }
